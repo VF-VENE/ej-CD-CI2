@@ -1,0 +1,20 @@
+name: Verificar HTML
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Verificar que index.html exista
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo "No se encontró index.html"
+            exit 1
+          fi
